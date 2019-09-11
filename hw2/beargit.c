@@ -152,7 +152,7 @@ int is_commit_msg_ok(const char *msg)
   return 0;
 }
 
-void next_commit_id(char *commit_id)
+void next_commit_id_hw1(char *commit_id)
 {
   int i = 0;
 
@@ -178,7 +178,7 @@ void next_commit_id(char *commit_id)
   }
 }
 
-int beargit_commit(const char *msg)
+int beargit_commit_hw1(const char *msg)
 {
   if (!is_commit_msg_ok(msg))
   {
@@ -278,10 +278,6 @@ int beargit_log()
   return 0;
 }
 
-// ---------------------------------------
-// HOMEWORK 2
-// ---------------------------------------
-
 // This adds a check to beargit_commit that ensures we are on the HEAD of a branch.
 int beargit_commit(const char *msg)
 {
@@ -353,8 +349,20 @@ int get_branch_number(const char *branch_name)
 
 int beargit_branch()
 {
-  /* COMPLETE THE REST */
-
+  FILE *file = fopen(".beargit/.branches", "r");
+  char cur_branch[BRANCHNAME_SIZE];
+  char line[BRANCHNAME_SIZE];
+  read_string_from_file(".beargit/.current_branch", cur_branch, BRANCHNAME_SIZE);
+  strtok(cur_branch, "\n");
+  while (fgets(line, sizeof(line), file))
+  {
+    strtok(line, "\n");
+    if ((strcmp(line, cur_branch) == 0))
+      fprintf(stdout, "*  %s\n", line);
+    else
+      fprintf(stdout, "   %s\n", line);
+  }
+  fclose(file);
   return 0;
 }
 
