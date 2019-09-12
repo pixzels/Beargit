@@ -54,19 +54,6 @@ static const char *dst = "";
     exit(1);                                                                         \
   }
 
-int is_sane_path(const char *path)
-{
-  if (strlen(path) > 512)
-    return 0;
-
-  // Only allow modifying files in .beargit directory
-  // const char *prefix = ".beargit";
-  // if (strncmp(prefix, path, strlen(prefix)) != 0)
-  //   return 0;
-
-  return 1;
-}
-
 static void fs_mkdir(const char *dirname)
 {
   ASSERT_ERROR_MESSAGE(dirname != NULL, "dirname is not a valid string");

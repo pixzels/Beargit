@@ -56,15 +56,15 @@ int fake_fprint(FILE *stream, char *fmt, ...)
     return 0;
 }
 
-// int is_sane_path(const char *path)
-// {
-//     if (strlen(path) > 512)
-//         return 0;
+int is_sane_path(const char *path)
+{
+    if (strlen(path) > 512)
+        return 0;
 
-//     // Only allow modifying files in .beargit directory
-//     //const char* prefix = ".beargit";
-//     //if (strncmp(prefix, path, strlen(prefix)) != 0)
-//     //  return 0;
+    // Only allow modifying files in .beargit directory
+    // const char *prefix = ".beargit";
+    // if (strncmp(prefix, path, strlen(prefix)) != 0)
+    //   return 0;
 
-//     return 1;
-// }
+    return 1;
+}
