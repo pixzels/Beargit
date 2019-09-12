@@ -19,6 +19,7 @@ make beargit
 mkdir test
 touch test/.BEARGIT_TEST_IGNORE_ME
 
+
 if [[ ! "$PATH" =~ "$PWD" ]]; then
   export PATH=$PWD:$PATH
 fi
@@ -27,11 +28,7 @@ cd test
 echo
 echo  '*** WELCOME TO YOUR BEARGIT TEST DIRECTORY ***'
 echo
-<<<<<<< HEAD
-echo 'You are now in the $PWD directory, which is a brand-new directory created for'
-=======
 echo 'You are now in the test directory, which is a brand-new directory created for'
->>>>>>> hw2_starter/master
 echo 'you to test out your beargit implementation. Your source directory has also'
 echo 'been added to the PATH, so you can just type commands such as "beargit init" to'
 echo 'try out your implementation.'
@@ -43,3 +40,11 @@ echo
 echo 'Hint: You may want to use the "touch <filename>" command to generate files for'
 echo 'testing. This will create an empty file with a certain name.'
 echo
+
+# beargit init
+# touch a.txt
+# touch b.txt
+# beargit add a.txt
+# beargit commit -m 'GO BEARS! Add a'
+# beargit add b.txt
+# beargit commit -m 'GO BEARS! Add b'

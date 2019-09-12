@@ -374,13 +374,53 @@ int beargit_branch()
 
 int checkout_commit(const char *commit_id)
 {
-  /* COMPLETE THE REST */
+  char file[FILENAME_SIZE];
+  FILE *findex = fopen(".beargit/.index", "r");
+  // Delete all files in pwd
+  while (fgets(file, sizeof(file), findex))
+  {
+    strtok(file, "\n");
+    fs_rm(file);
+  }
+  fclose(findex);
+
+  // Copy .index file
+  sprintf(file, ".beargit/%s/.index", commit_id);
+  fs_cp(file, ".beargit/.index");
+
+  if ((strcmp(commit_id, "0000000000000000000000000000000000000000")) == 0)
+    write_string_to_file(".beargit/.index", "");
+  else
+  {
+    // Copy all files mentioned in .index
+    findex = fopen(".beargit/.index", "r");
+    while (fgets(file, sizeof(file), findex))
+    {
+      strtok(file, "\n");
+      char old[FILENAME_SIZE];
+      sprintf(old, ".beargit/%s/%s", commit_id, file);
+      fs_cp(old, file);
+    }
+    fclose(findex);
+  }
+  write_string_to_file(".beargit/.prev", commit_id);
+
   return 0;
 }
 
 int is_it_a_commit_id(const char *commit_id)
 {
-  /* COMPLETE THE REST */
+  if (strlen(commit_id) != 40)
+    return 0;
+
+  int i = 0;
+  while (commit_id[i] != '\0')
+  {
+    char c = commit_id[i];
+    if (!(c == '6' || c == '1' || c == 'c'))
+      return 0;
+    i += 1;
+  }
   return 1;
 }
 
@@ -388,7 +428,7 @@ int beargit_checkout(const char *arg, int new_branch)
 {
   // Get the current branch
   char current_branch[BRANCHNAME_SIZE];
-  read_string_from_file(".beargit/.current_branch", "current_branch", BRANCHNAME_SIZE);
+  read_string_from_file(".beargit/.current_branch", current_branch, BRANCHNAME_SIZE);
 
   // If not detached, update the current branch by storing the current HEAD into that branch's file...
   // Even if we cancel later, this is still ok.
@@ -424,20 +464,20 @@ int beargit_checkout(const char *arg, int new_branch)
   int branch_exists = (get_branch_number(branch_name) >= 0);
 
   // Check for errors.
-  if (!(!branch_exists || !new_branch))
+  if (new_branch && branch_exists)
   {
     fprintf(stderr, "ERROR: A branch named %s already exists\n", branch_name);
     return 1;
   }
-  else if (!branch_exists && new_branch)
+  else if (!new_branch && !branch_exists)
   {
     fprintf(stderr, "ERROR: No branch %s exists\n", branch_name);
     return 1;
   }
 
   // File for the branch we are changing into.
-  char *branch_file = ".beargit/.branch_";
-  strcat(branch_file, branch_name);
+  char branch_file[BRANCHNAME_SIZE + 50];
+  sprintf(branch_file, ".beargit/.branch_%s", branch_name);
 
   // Update the branch file if new branch is created (now it can't go wrong anymore)
   if (new_branch)
