@@ -1,4 +1,4 @@
-# Beargit - Clone of 'Git' version control system (CS61C Project)
+# Beargit - Clone of 'Git' version control system
 
 ### Commands supported
 
