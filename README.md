@@ -4,11 +4,14 @@
 
 1. beargit init
 2. beargit add <file>
-3. beargit commit -m <message>
-4. beargit log
-5. beargit checkout <commit>
-6. beargit checkout <branch>
-7. beargit checkout -b <new_branch>
+3. beargit rm <file>
+4. beargit commit -m <message>
+5. beargit log
+6. beargit status
+7. beargit branch
+8. beargit checkout <commit>
+9. beargit checkout <branch>
+10. beargit checkout -b <new_branch>
 
 ### Build
 

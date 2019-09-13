@@ -10,11 +10,7 @@
 /* Implementation Notes:
  *
  * - Functions return 0 if successful, 1 if there is an error.
- * - All error conditions in the function description need to be implemented
- *   and written to stderr. We catch some additional errors for you in main.c.
- * - Output to stdout needs to be exactly as specified in the function description.
- * - Only edit this file (beargit.c)
- * - You are given the following helper functions:
+ * - FS helper functions:
  *   * fs_mkdir(dirname): create directory <dirname>
  *   * fs_rm(filename): delete file <filename>
  *   * fs_mv(src,dst): move file <src> to <dst>, overwriting <dst> if it exists
@@ -23,8 +19,6 @@
  *   * read_string_from_file(filename,str,size): read a string of at most <size> (incl.
  *     NULL character) from file <filename> and store it into <str>. Note that <str>
  *     needs to be large enough to hold that string.
- *  - You NEED to test your code. The autograder we provide does not contain the
- *    full set of tests that we will run on your code. See "Step 5" in the homework spec.
  */
 
 /* beargit init
@@ -95,11 +89,7 @@ int beargit_add(const char *filename)
   return 0;
 }
 
-/* beargit rm <filename>
- * 
- * See "Step 2" in the homework 1 spec.
- *
- */
+/* beargit rm <filename> */
 
 int beargit_rm(const char *filename)
 {
@@ -128,11 +118,7 @@ int beargit_rm(const char *filename)
   return 0;
 }
 
-/* beargit commit -m <msg>
- *
- * See "Step 3" in the homework 1 spec.
- *
- */
+/* beargit commit -m <msg> */
 
 const char *go_bears = "GO BEARS!";
 
@@ -218,11 +204,7 @@ int beargit_commit_hw1(const char *msg)
   return 0;
 }
 
-/* beargit status
- *
- * See "Step 1" in the homework 1 spec.
- *
- */
+/* beargit status */
 
 int beargit_status()
 {
@@ -243,11 +225,7 @@ int beargit_status()
   return 0;
 }
 
-/* beargit log
- *
- * See "Step 4" in the homework 1 spec.
- *
- */
+/* beargit log */
 
 int beargit_log()
 {
@@ -341,11 +319,7 @@ int get_branch_number(const char *branch_name)
   return branch_index;
 }
 
-/* beargit branch
- *
- * See "Step 6" in the homework 1 spec.
- *
- */
+/* beargit branch */
 
 int beargit_branch()
 {
@@ -366,11 +340,7 @@ int beargit_branch()
   return 0;
 }
 
-/* beargit checkout
- *
- * See "Step 7" in the homework 1 spec.
- *
- */
+/* beargit checkout */
 
 int checkout_commit(const char *commit_id)
 {

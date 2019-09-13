@@ -1,6 +1,4 @@
-/**
- * This file contains utility functions to use in the homework. Do not modify!
- */
+
 #include <stdlib.h>
 #include <stdarg.h>
 #include <stdio.h>
