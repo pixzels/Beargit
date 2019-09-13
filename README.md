@@ -3,15 +3,15 @@
 ### Commands supported
 
 1. beargit init
-2. beargit add <file>
-3. beargit rm <file>
-4. beargit commit -m <message>
+2. beargit add `file`
+3. beargit rm `file`
+4. beargit commit -m `message`
 5. beargit log
 6. beargit status
 7. beargit branch
-8. beargit checkout <commit>
-9. beargit checkout <branch>
-10. beargit checkout -b <new_branch>
+8. beargit checkout `commit`
+9. beargit checkout `branch`
+10. beargit checkout -b `new_branch`
 
 ### Build
 
